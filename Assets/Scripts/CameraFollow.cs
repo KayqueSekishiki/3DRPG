@@ -15,10 +15,10 @@ public class CameraFollow : MonoBehaviour
 
     public float pitch;
 
-  
+
     void Update()
     {
-        currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed; 
+        currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
     }
 

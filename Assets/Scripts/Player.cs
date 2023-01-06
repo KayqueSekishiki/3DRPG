@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSeconds(0.8f);
 
-           
+
             anim.SetBool("isAttacking", false);
             anim.SetInteger("transition", transitionValue);
             isReady = false;
