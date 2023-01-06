@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     List<Transform> EnemiesList = new List<Transform>();
     public float ColliderRadius;
 
+    public float enemyDamage = 25f;
+
 
     void Start()
     {
@@ -101,7 +103,8 @@ public class Player : MonoBehaviour
             isReady = true;
             anim.SetBool("isAttacking", true);
             anim.SetInteger("transition", 2);
-            yield return new WaitForSeconds(1.3f);
+
+            yield return new WaitForSeconds(0.5f);
 
             GetEnemiesRange();
 
@@ -109,12 +112,16 @@ public class Player : MonoBehaviour
             {
                 Enemy enemy = enemies.GetComponent<Enemy>();
 
-                if(enemy != null)
+                if (enemy != null)
                 {
-                    enemy.GetHit();
+                    enemy.GetHit(enemyDamage);
                 }
             }
 
+
+            yield return new WaitForSeconds(0.8f);
+
+           
             anim.SetBool("isAttacking", false);
             anim.SetInteger("transition", transitionValue);
             isReady = false;
