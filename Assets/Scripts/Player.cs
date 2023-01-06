@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
 
     bool isReady;
 
+    List<Transform> EnemiesList = new List<Transform>();
+    public float ColliderRadius;
+
 
     void Start()
     {
@@ -99,10 +102,41 @@ public class Player : MonoBehaviour
             anim.SetBool("isAttacking", true);
             anim.SetInteger("transition", 2);
             yield return new WaitForSeconds(1.3f);
+
+            GetEnemiesRange();
+
+            foreach (Transform enemies in EnemiesList)
+            {
+                Enemy enemy = enemies.GetComponent<Enemy>();
+
+                if(enemy != null)
+                {
+                    enemy.GetHit();
+                }
+            }
+
             anim.SetBool("isAttacking", false);
             anim.SetInteger("transition", transitionValue);
             isReady = false;
         }
     }
 
+
+    void GetEnemiesRange()
+    {
+        EnemiesList.Clear();
+        foreach (Collider c in Physics.OverlapSphere((transform.position + transform.forward * ColliderRadius), ColliderRadius))
+        {
+            if (c.gameObject.CompareTag("Enemy"))
+            {
+                EnemiesList.Add(c.transform);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + transform.forward, ColliderRadius);
+    }
 }
