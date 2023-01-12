@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float TotalHealth;
+    public float CurrentHealth;
     public float Speed;
     public float RotSpeed;
     public float Gravity;
@@ -16,6 +18,7 @@ public class Player : MonoBehaviour
     Animator anim;
 
     bool isReady;
+    public bool isAlive;
 
     List<Transform> EnemiesList = new List<Transform>();
     public float ColliderRadius;
@@ -27,6 +30,9 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+
+        CurrentHealth = TotalHealth;
+        isAlive = true;
     }
 
 
@@ -145,5 +151,28 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + transform.forward, ColliderRadius);
+    }
+
+    public void GetHit(float Damage)
+    {
+        CurrentHealth -= Damage;
+        if (CurrentHealth > 0)
+        {
+            anim.SetInteger("transition", 3);
+            StartCoroutine(RecoveryFromHit());
+        }
+        else
+        {
+            anim.SetInteger("transition", 4);
+            isAlive = false;
+         
+        }
+
+    }
+
+    IEnumerator RecoveryFromHit()
+    {
+        yield return new WaitForSeconds(1f);
+        anim.SetInteger("transition", 0);
     }
 }
