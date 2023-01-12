@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
                 {
                     anim.SetBool("isWalking", false);
                     MoveDirection = Vector3.zero;
-                    StartCoroutine(Attack(1));
+                  //  StartCoroutine(Attack(1));
                 }
             }
 
@@ -95,16 +95,16 @@ public class Player : MonoBehaviour
 
                 if (!anim.GetBool("isWalking"))
                 {
-                    StartCoroutine(Attack(0));
+                    StartCoroutine("Attack");
                 }
 
             }
         }
     }
 
-    IEnumerator Attack(int transitionValue)
+    IEnumerator Attack()
     {
-        if (!isReady)
+        if (!isReady && !anim.GetBool("isHiting"))
         {
             isReady = true;
             anim.SetBool("isAttacking", true);
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
 
 
             anim.SetBool("isAttacking", false);
-            anim.SetInteger("transition", transitionValue);
+            anim.SetInteger("transition", 0);
             isReady = false;
         }
     }
@@ -158,7 +158,9 @@ public class Player : MonoBehaviour
         CurrentHealth -= Damage;
         if (CurrentHealth > 0)
         {
+            StopCoroutine("Attack");
             anim.SetInteger("transition", 3);
+            anim.SetBool("isHiting", true);
             StartCoroutine(RecoveryFromHit());
         }
         else
@@ -174,5 +176,8 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         anim.SetInteger("transition", 0);
+        anim.SetBool("isHiting", false);
+        isReady = false;
+        anim.SetBool("isAttacking", false);
     }
 }

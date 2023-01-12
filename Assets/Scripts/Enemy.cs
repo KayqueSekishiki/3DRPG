@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
 
                 if (distance <= agent.stoppingDistance)
                 {
-                    StartCoroutine(Attack());
+                    StartCoroutine("Attack");
                     LookTarget();
                 }
 
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Attack()
     {
-        if (!isReady && PlayerIsAlive)
+        if (!isReady && PlayerIsAlive && !anim.GetBool("isHiting"))
         {
             isReady = true;
             anim.SetBool("isAttacking", true);
@@ -125,7 +125,9 @@ public class Enemy : MonoBehaviour
         CurrentHealth -= Damage;
         if (CurrentHealth > 0)
         {
+            StopCoroutine("Attack");
             anim.SetInteger("transition", 3);
+            anim.SetBool("isHiting", true);
             StartCoroutine(RecoveryFromHit());
         }
         else
@@ -140,5 +142,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         anim.SetInteger("transition", 0);
+        anim.SetBool("isHiting", false);
+        isReady = false;
     }
 }

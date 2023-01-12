@@ -1588,6 +1588,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4836760686469193431, guid: 602003b4ae12a1441b86a86a337faec8, type: 3}
+      propertyPath: Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836760686469193431, guid: 602003b4ae12a1441b86a86a337faec8, type: 3}
       propertyPath: RotSpeed
       value: 200
       objectReference: {fileID: 0}
