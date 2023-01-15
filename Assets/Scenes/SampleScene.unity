@@ -2354,6 +2354,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColliderRadius: 1
   isOpened: 0
+  Items:
+  - {fileID: 11400000, guid: 10e2db200a9810a4facf6cae8d995bb9, type: 2}
+  - {fileID: 11400000, guid: ed96ece344973ea469063843656507a5, type: 2}
 --- !u!4 &595353803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 444580, guid: 03d4692bad6ae2846b02d5e5cd5be76f, type: 3}
