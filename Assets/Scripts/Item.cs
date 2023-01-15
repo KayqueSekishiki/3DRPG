@@ -17,8 +17,29 @@ public class Item : ScriptableObject
         Elixir,
         Crystal
     }
-
     public Type ItemType;
+
+    [System.Serializable]
+    public enum SlotsType
+    {
+        Helmet,
+        Armor,
+        RightShoulder,
+        RightHand,
+        Weapon,
+        LeftShoulder,
+        LeftHand,
+        Shield,
+        Belt,
+        Trousers,
+        RightFoot,
+        LeftFoot,
+        RightRing,
+        LeftRing,
+        Necklace,
+        Cloak
+    }
+    public SlotsType SlotType;
 
     public void GetAction()
     {

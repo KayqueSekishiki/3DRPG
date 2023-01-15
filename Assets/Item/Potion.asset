@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130f320c9e91b5b479205fe4999d137d, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
   Name: Potion
   Value: 50
   ItemType: 0
+  SlotType: 0

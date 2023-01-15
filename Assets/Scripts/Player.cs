@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
                 {
                     anim.SetBool("isWalking", false);
                     MoveDirection = Vector3.zero;
-                  //  StartCoroutine(Attack(1));
+                    //  StartCoroutine(Attack(1));
                 }
             }
 
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
         {
             anim.SetInteger("transition", 4);
             isAlive = false;
-         
+
         }
 
     }
