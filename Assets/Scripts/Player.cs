@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -38,8 +39,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Move();
-        GetMouseInput();
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            Move();
+            GetMouseInput();
+        }
     }
 
     void Move()

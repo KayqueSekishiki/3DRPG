@@ -40,9 +40,9 @@ public class Chest : MonoBehaviour
 
     void OpenChest()
     {
-        foreach (Item i in Items)
+        foreach(Item i in Items)
         {
-            i.GetAction();
+            Inventory.instance.Createitem(i);
         }
         anim.SetTrigger("open");
         isOpened = true;
