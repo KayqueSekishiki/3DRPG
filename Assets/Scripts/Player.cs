@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,9 +11,10 @@ public class Player : MonoBehaviour
     public float Speed;
     public float RotSpeed;
     public float Gravity;
+    private float Rotation;
     public float AttackDamage;
 
-    private float Rotation;
+    public Image HealthBar;
 
     Vector3 MoveDirection;
 
@@ -160,6 +162,8 @@ public class Player : MonoBehaviour
     public void GetHit(float Damage)
     {
         CurrentHealth -= Damage;
+        HealthBar.fillAmount = CurrentHealth / TotalHealth;
+
         if (CurrentHealth > 0)
         {
             StopCoroutine("Attack");
@@ -187,6 +191,7 @@ public class Player : MonoBehaviour
 
     public void IncreaseStats(float IncreaseHealth, float IncreasePower, float IncreaseSpeed)
     {
+        TotalHealth += IncreaseHealth;
         CurrentHealth += IncreaseHealth;
         AttackDamage += IncreasePower;
         Speed += IncreaseSpeed;
@@ -194,6 +199,7 @@ public class Player : MonoBehaviour
 
     public void DecreaseStats(float IncreaseHealth, float IncreasePower, float IncreaseSpeed)
     {
+        TotalHealth -= IncreaseHealth;
         CurrentHealth -= IncreaseHealth;
         AttackDamage -= IncreasePower;
         Speed -= IncreaseSpeed;

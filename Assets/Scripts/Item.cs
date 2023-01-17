@@ -81,7 +81,7 @@ public class Item : ScriptableObject
                 break;
 
             case Type.Crystal:
-                //  Debug.Log("Crystal +" + Value);
+               
                 player.DecreaseStats(0, 0, Value);
                 break;
         }
