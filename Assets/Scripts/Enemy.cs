@@ -22,8 +22,14 @@ public class Enemy : MonoBehaviour
     private bool isReady;
     private bool PlayerIsAlive;
 
+    [Header("Life Bar")]
     public Image HealthBar;
     public GameObject CanvasBar;
+
+    [Header("Path")]
+    public List<Transform> PathPoints = new List<Transform>();
+    public int CurrentPathIndex = 0;
+
 
     private void Start()
     {
@@ -33,6 +39,25 @@ public class Enemy : MonoBehaviour
 
         CurrentHealth = TotalHealth;
         PlayerIsAlive = true;
+    }
+
+    void MoveToNextPoint()
+    {
+        if (PathPoints.Count > 0)
+        {
+            float distance = Vector3.Distance(PathPoints[CurrentPathIndex].position, transform.position);
+            agent.destination = PathPoints[CurrentPathIndex].position;
+
+            if (distance <= 4f)
+            {
+                //CurrentPathIndex++;
+                CurrentPathIndex = Random.Range(0, PathPoints.Count);
+                CurrentPathIndex %= PathPoints.Count;
+            }
+
+            anim.SetInteger("transition", 1);
+            anim.SetBool("isWalking", true);
+        }
     }
 
     private void Update()
@@ -69,7 +94,8 @@ public class Enemy : MonoBehaviour
                 anim.SetInteger("transition", 0);
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttacking", false);
-                agent.isStopped = true;
+                //agent.isStopped = true;
+                MoveToNextPoint();
             }
         }
     }
