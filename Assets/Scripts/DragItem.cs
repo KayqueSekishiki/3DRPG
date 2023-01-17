@@ -52,6 +52,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         else if (slot.SlotType.ToString() == "Inventory")
         {
             transform.SetParent(slotTransform);
+            item.RemoveStats();
         }
     }
 }

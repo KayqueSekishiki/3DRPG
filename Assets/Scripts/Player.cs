@@ -184,4 +184,16 @@ public class Player : MonoBehaviour
         isReady = false;
         anim.SetBool("isAttacking", false);
     }
+
+    public void IncreaseStats(float IncreaseHealth, float IncreaseSpeed)
+    {
+        CurrentHealth += IncreaseHealth;
+        Speed += IncreaseSpeed;
+    }
+
+    public void DecreaseStats(float IncreaseHealth, float IncreaseSpeed)
+    {
+        CurrentHealth -= IncreaseHealth;
+        Speed -= IncreaseSpeed;
+    }
 }
