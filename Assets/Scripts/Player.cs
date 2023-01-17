@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float Speed;
     public float RotSpeed;
     public float Gravity;
+    public float AttackDamage;
 
     private float Rotation;
 
@@ -24,7 +25,6 @@ public class Player : MonoBehaviour
     List<Transform> EnemiesList = new List<Transform>();
     public float ColliderRadius;
 
-    public float enemyDamage = 25f;
 
 
     void Start()
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    enemy.GetHit(enemyDamage);
+                    enemy.GetHit(AttackDamage);
                 }
             }
 
@@ -185,15 +185,17 @@ public class Player : MonoBehaviour
         anim.SetBool("isAttacking", false);
     }
 
-    public void IncreaseStats(float IncreaseHealth, float IncreaseSpeed)
+    public void IncreaseStats(float IncreaseHealth, float IncreasePower, float IncreaseSpeed)
     {
         CurrentHealth += IncreaseHealth;
+        AttackDamage += IncreasePower;
         Speed += IncreaseSpeed;
     }
 
-    public void DecreaseStats(float IncreaseHealth, float IncreaseSpeed)
+    public void DecreaseStats(float IncreaseHealth, float IncreasePower, float IncreaseSpeed)
     {
         CurrentHealth -= IncreaseHealth;
+        AttackDamage -= IncreasePower;
         Speed -= IncreaseSpeed;
     }
 }

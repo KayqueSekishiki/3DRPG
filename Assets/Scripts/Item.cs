@@ -51,17 +51,16 @@ public class Item : ScriptableObject
         switch (ItemType)
         {
             case Type.Potion:
-                //  Debug.Log("Health +" + Value);
-                player.IncreaseStats(Value, 0);
+                player.IncreaseStats(Value, 0, 0);
                 break;
 
-            case Type.Elixir:                
-             //   player.IncreaseStats(Value, 0);
+            case Type.Elixir:
+                player.IncreaseStats(0, Value, 0);
                 break;
 
             case Type.Crystal:
-              //  Debug.Log("Crystal +" + Value);
-                player.IncreaseStats(0, Value);
+                //  Debug.Log("Crystal +" + Value);
+                player.IncreaseStats(0, 0, Value);
                 break;
         }
     }
@@ -74,17 +73,16 @@ public class Item : ScriptableObject
         switch (ItemType)
         {
             case Type.Potion:
-                //  Debug.Log("Health +" + Value);
-                player.DecreaseStats(Value, 0);
+                player.DecreaseStats(Value, 0, 0);
                 break;
 
             case Type.Elixir:
-                //   player.IncreaseStats(Value, 0);
+                player.DecreaseStats(0, Value, 0);
                 break;
 
             case Type.Crystal:
                 //  Debug.Log("Crystal +" + Value);
-                player.DecreaseStats(0, Value);
+                player.DecreaseStats(0, 0, Value);
                 break;
         }
     }

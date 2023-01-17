@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class Enemy : MonoBehaviour
     public float ColliderRadius;
     private bool isReady;
     private bool PlayerIsAlive;
+
+    public Image HealthBar;
+    public GameObject CanvasBar;
 
     private void Start()
     {
@@ -123,6 +127,8 @@ public class Enemy : MonoBehaviour
     public void GetHit(float Damage)
     {
         CurrentHealth -= Damage;
+        HealthBar.fillAmount = CurrentHealth / TotalHealth;
+
         if (CurrentHealth > 0)
         {
             StopCoroutine("Attack");
@@ -134,6 +140,7 @@ public class Enemy : MonoBehaviour
         {
             anim.SetInteger("transition", 4);
             cap.enabled = false;
+            CanvasBar.gameObject.SetActive(false);
         }
 
     }
